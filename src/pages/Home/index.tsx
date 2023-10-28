@@ -30,7 +30,6 @@ function Home() {
             <div className={mainClass} style={{ backgroundImage: `url(${background})` }}>
                 <div className={styles.roomSelectorContainer}>
                     <RoomSearchInput
-                        roomIdFocus={roomIdFocus}
                         setRoomIdFocus={setRoomIdFocus}
                         setRoomId={setRoomSearchInput}
                     />

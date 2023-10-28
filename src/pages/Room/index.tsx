@@ -4,11 +4,11 @@ import {
 } from '@livekit/components-react';
 
 import StreamPlayer from '../../components/room/StreamPlayer';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 function Room() {
     // Use this room id for fetching livekit token
-    const { slug } = useParams();
+    // const { slug } = useParams();
 
     // Get serverUrl and LiveKIT token from backend
     const serverUrl = "REDACTED"

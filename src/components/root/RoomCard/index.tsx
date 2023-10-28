@@ -14,6 +14,7 @@ export default function RoomCard({ roomName, roomId, highlight }: { roomName: st
                 <span className={styles.titleIcon}><FaMusic color={'gray'} /></span>
                 < p > {roomName}</p>
             </div>
+            <p>{roomId}</p>
         </div>
     )
 }

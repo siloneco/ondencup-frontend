@@ -1,8 +1,7 @@
 import styles from './index.module.css'
-import { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-export default function RoomSearchInput({ roomIdFocus, setRoomIdFocus, setRoomId }: { roomIdFocus: boolean, setRoomIdFocus: Function, setRoomId: Function }) {
+export default function RoomSearchInput({ setRoomIdFocus, setRoomId }: { setRoomIdFocus: Function, setRoomId: Function }) {
     return (
         <>
             <span className={styles.searchIcon}>
