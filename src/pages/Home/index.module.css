@@ -1,0 +1,72 @@
+.wrapper {
+  height: 100vh;
+}
+
+.main,
+.darkMain {
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.main::before,
+.darkMain::before,
+.cardContainerWrapper::before,
+.darkCardContainerWrapper::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  left: -20px;
+  right: -20px;
+  background: inherit;
+  transition: filter 0.3s ease;
+  filter: brightness(95%) blur(0px);
+  z-index: -1;
+}
+
+.darkMain::before,
+.darkCardContainerWrapper::before {
+  filter: brightness(40%) blur(10px);
+}
+
+.roomSelectorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 100%;
+}
+
+.cardContainerWrapper,
+.darkCardContainerWrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  background-color: #6E8898;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  max-width: 800px;
+}
+
+@media(max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 576px) {
+  .cardContainer {
+    grid-template-columns: 1fr;
+  }
+}

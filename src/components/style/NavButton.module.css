@@ -1,0 +1,13 @@
+.navButton {
+    background-color: transparent;
+    color: white;
+    padding: 8px 12px;
+    border: transparent 2px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border 0.1s ease;
+}
+
+.navButton:hover {
+    border: rgb(105, 105, 105) 2px solid;
+}
