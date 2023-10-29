@@ -19,13 +19,6 @@ function Room() {
             `ws://${import.meta.env.VITE_BACKEND_HOSTNAME}/ws?token=${token}&room=${slug}`
         );
 
-        socket.addEventListener("open", (event) => {
-            console.log("WebSocket connection established.");
-        });
-        socket.addEventListener("close", (event) => {
-            console.log("WebSocket connection closed.");
-        });
-
         return () => {
             socket.close();
         };

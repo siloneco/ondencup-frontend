@@ -1,4 +1,3 @@
-import React from 'react';
 import RoomCard from '../RoomCard';
 
 import styles from './index.module.css'
