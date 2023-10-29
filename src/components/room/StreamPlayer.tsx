@@ -29,7 +29,7 @@ const StreamPlayerCore = ({ participant }: { participant: Participant }) => {
     });
 
     return (
-        <video ref={videoEl} style={{ height: '100vh', width: '100vw', position: 'absolute' }} />
+        <video ref={videoEl} style={{ height: 'calc(100vh - 60px)', width: '100vw', position: 'absolute' }} />
     );
 };
 

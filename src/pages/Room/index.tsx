@@ -4,9 +4,14 @@ import {
 } from '@livekit/components-react';
 import StreamPlayer from '../../components/room/StreamPlayer';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import getLiveKitToken from '../../lib/userdata/GetLiveKitToken';
+import LayoutNav from '../../components/layout/LayoutNav';
 
 function Room() {
+    const [livekitToken, setLivekitToken] = useState<string | null>(null);
+    const [livekitTokenFetched, setLivekitTokenFetched] = useState(false);
+
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -27,26 +32,36 @@ function Room() {
     }, []);
 
 
-    // Use this room id for fetching livekit token
     const { slug } = useParams();
 
-    // Get serverUrl and LiveKIT token from backend
-    const serverUrl = "REDACTED"
-    const roomToken = "REDACTED"
+    if (slug !== undefined && !livekitTokenFetched) {
+        setLivekitTokenFetched(true)
+        getLiveKitToken(slug)
+            .then((token) => setLivekitToken(token))
+
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
     return (
-        <LiveKitRoom
-            video={false}
-            audio={false}
-            token={roomToken}
-            connectOptions={{ autoSubscribe: true }}
-            serverUrl={serverUrl}
-            // Use the default LiveKit theme for nice styles.
-            data-lk-theme="default"
-            style={{ height: '100vh', width: '100vw' }}
-        >
-            <StreamPlayer />
-        </LiveKitRoom>
+        <>
+            <LayoutNav />
+            <LiveKitRoom
+                video={false}
+                audio={false}
+                token={livekitToken as string}
+                connectOptions={{ autoSubscribe: true }}
+                serverUrl={import.meta.env.VITE_LIVEKIT_SERVER_URL}
+                // Use the default LiveKit theme for nice styles.
+                data-lk-theme="default"
+                style={{ height: 'calc(100vh - 60px)', width: '100vw' }}
+            >
+                <StreamPlayer />
+            </LiveKitRoom>
+        </>
     )
 }
 

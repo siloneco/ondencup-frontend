@@ -26,7 +26,7 @@ export default function LayoutNav() {
     if (username !== null) {
         upperRight = (
             <>
-                <p style={{ paddingRight: '10px' }}> Hello, {username}!</p >
+                <p className={styles.greetings} > Hello, {username}!</p >
                 <LogOutButton />
             </>
         )
@@ -44,9 +44,6 @@ export default function LayoutNav() {
             <nav className={styles.nav}>
                 <div className={`${styles.navSpacer} ${styles.navRight}`}>
                     <HomeButton />
-                </div>
-                <div className={`${styles.navSpacer} ${styles.navCenter}`}>
-                    <p>Project Name (Undefined)</p>
                 </div>
                 <div className={styles.navSpacer} style={{ paddingRight: '20px' }}>
                     {upperRight}

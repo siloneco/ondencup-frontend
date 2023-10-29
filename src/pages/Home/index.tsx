@@ -12,10 +12,12 @@ function Home() {
     const [roomSearchInput, setRoomSearchInput] = useState('');
 
     const [rooms, setRooms] = useState<any[]>([]);
+    const [roomListFetched, setRoomListFetched] = useState(false);
 
     const token = localStorage.getItem('token')
 
-    if (token !== null) {
+    if (token !== null && !roomListFetched) {
+        setRoomListFetched(true);
         fetchRoomList(token).then((rooms) => {
             setRooms(rooms);
         })
