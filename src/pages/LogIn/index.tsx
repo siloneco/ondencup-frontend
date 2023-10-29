@@ -10,7 +10,7 @@ export default function LogIn() {
     const [password, setPassword] = useState('');
 
     const logIn = async () => {
-        const response = await fetch("http://" + import.meta.env.VITE_BACKEND_URL + '/auth/login', {
+        const response = await fetch("http://" + import.meta.env.VITE_BACKEND_HOSTNAME + '/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
