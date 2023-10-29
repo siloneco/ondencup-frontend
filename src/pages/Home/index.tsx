@@ -1,24 +1,24 @@
-import RoomSearchInput from "../../components/root/RoomSearchInput";
-import RoomCard from "../../components/root/RoomCard";
+import RoomSearchInput from "../../components/home/RoomSearchInput";
 import styles from './index.module.css'
 
-import background from '../../assets/image.jpg'
+import background from '../../assets/image.png'
 import { useState } from "react";
 import LayoutNav from "../../components/layout/LayoutNav";
+import fetchRoomList from "../../lib/roomdata/FetchRoomList";
+import RoomCardDeployer from "../../components/home/RoomCardDeployer";
 
 function Home() {
     const [roomIdFocus, setRoomIdFocus] = useState(false);
     const [roomSearchInput, setRoomSearchInput] = useState('');
 
-    const isMatch = (roomName: string) => {
-        if (roomSearchInput === '') return true;
-        return roomName.toLowerCase().includes(roomSearchInput.toLocaleLowerCase());
-    }
+    const [rooms, setRooms] = useState<any[]>([]);
 
-    let roomsTmp = []
-    for (let i = 1; i <= 6; i++) {
-        const title = `Room ${i}`;
-        roomsTmp.push({ title: title, roomId: "123456" })
+    const token = localStorage.getItem('token')
+
+    if (token !== null) {
+        fetchRoomList(token).then((rooms) => {
+            setRooms(rooms);
+        })
     }
 
     const mainClass = roomIdFocus ? styles.darkMain : styles.main;
@@ -36,22 +36,7 @@ function Home() {
                 </div>
             </div>
             <div className={cardContainerWrapperClass}>
-                <div className={styles.cardContainer}>
-                    {roomsTmp.map((room, index) => {
-                        if (!isMatch(room.title)) {
-                            return null;
-                        }
-                        return (<RoomCard key={index} roomName={room.title} roomId={room.roomId}
-                            highlight={roomSearchInput === '' ? 'plain' : 'highlight'} />);
-                    })}
-                    {roomsTmp.map((room, index) => {
-                        if (isMatch(room.title)) {
-                            return null;
-                        }
-                        return (<RoomCard key={index} roomName={room.title} roomId={room.roomId}
-                            highlight={'dark'} />);
-                    })}
-                </div>
+                <RoomCardDeployer roomSearchInput={roomSearchInput} rooms={rooms} />
             </div>
         </div>
     );

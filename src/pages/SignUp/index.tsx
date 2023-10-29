@@ -10,7 +10,7 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
 
     const signUp = async () => {
-        const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/auth/sign-up', {
+        const response = await fetch("http://" + import.meta.env.VITE_BACKEND_URL + '/auth/sign-up', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

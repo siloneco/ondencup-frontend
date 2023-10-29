@@ -1,5 +1,5 @@
 export default async function fetchUserName(token: string) {
-    const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/user/name", {
+    const res = await fetch("http://" + import.meta.env.VITE_BACKEND_HOSTNAME + "/api/user/name", {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token,
